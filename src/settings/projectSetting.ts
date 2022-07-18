@@ -1,8 +1,8 @@
 const setting = {
-  //导航模式 vertical 左侧菜单模式 horizontal 顶部菜单模式
-  navMode: 'vertical',
+  //导航模式 vertical 左侧菜单模式 horizontal 顶部菜单模式 horizontal-mix顶部菜单混合模式
+  navMode: 'horizontal-mix',
   //导航风格 dark 暗色侧边栏 light 白色侧边栏 header-dark 暗色顶栏
-  navTheme: 'dark',
+  navTheme: 'header-dark',
   // 是否处于移动端模式
   isMobile: false,
   //顶部
@@ -12,7 +12,7 @@ const setting = {
     //固定顶部
     fixed: true,
     //显示重载按钮
-    isReload: true,
+    isReload: false,
   },
   //页脚
   showFooter: true,
@@ -30,20 +30,18 @@ const setting = {
     //最小宽度
     minMenuWidth: 64,
     //菜单宽度
-    menuWidth: 200,
+    menuWidth: 220,
     //固定菜单
     fixed: true,
     //分割菜单
-    mixMenu: false,
+    mixMenu: true,
     //触发移动端侧边栏的宽度
     mobileWidth: 800,
-    // 折叠菜单
-    collapsed: false,
   },
   //面包屑
   crumbsSetting: {
     //是否显示
-    show: true,
+    show: false,
     //显示图标
     showIcon: false,
   },

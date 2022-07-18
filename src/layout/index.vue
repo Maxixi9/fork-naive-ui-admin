@@ -32,7 +32,17 @@
 
     <n-layout :inverted="inverted">
       <n-layout-header :inverted="getHeaderInverted" :position="fixedHeader">
-        <PageHeader v-model:collapsed="collapsed" :inverted="inverted" />
+        <PageHeader
+          v-model:collapsed="collapsed"
+          :inverted="inverted"
+          :rootMenu="
+            !(
+              !isMobile &&
+              isMixMenuNoneSub &&
+              (navMode === 'vertical' || navMode === 'horizontal-mix')
+            )
+          "
+        />
       </n-layout-header>
 
       <n-layout-content
@@ -46,11 +56,11 @@
             'fluid-header': fixedHeader === 'static',
           }"
         >
-          <TabsView v-if="isMultiTabs" v-model:collapsed="collapsed" />
+          <TabsView v-if="isMultiTabs && isMixMenuNoneSub" v-model:collapsed="collapsed" />
           <div
             class="main-view"
             :class="{
-              'main-view-fix': fixedMulti,
+              'main-view-fix': fixedMulti && isMixMenuNoneSub,
               noMultiTabs: !isMultiTabs,
               'mt-3': !isMultiTabs,
             }"
@@ -110,6 +120,7 @@
   });
 
   const isMixMenuNoneSub = computed(() => {
+    console.log('1111111111')
     const mixMenu = settingStore.menuSetting.mixMenu;
     const currentRoute = useRoute();
     if (unref(navMode) != 'horizontal-mix') return true;
@@ -192,6 +203,13 @@
 </script>
 
 <style lang="less">
+  .n-layout-sider {
+    background-color: #364760;
+  }
+  .n-layout-header {
+    background-color: #364760;
+  }
+
   .layout-side-drawer {
     background-color: rgb(0, 20, 40);
 

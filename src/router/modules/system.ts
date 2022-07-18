@@ -24,6 +24,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '系统设置',
       icon: renderIcon(OptionsSharp),
       sort: 1,
+      hidden: false,
     },
     children: [
       {

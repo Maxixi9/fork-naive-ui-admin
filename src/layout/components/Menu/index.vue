@@ -121,9 +121,15 @@
       // 点击菜单
       function clickMenuItem(key: string) {
         if (/http(s)?:/.test(key)) {
+          // 打开外部链接frame
           window.open(key);
         } else {
+          // 内部路由
           router.push({ name: key });
+          if (key === 'dashboard_workplace') {
+            settingStore.navMode = key === 'dashboard_workplace' ? 'horizontal-mix' : 'horizontal';
+            // settingStore.multiTabsSetting.show = key === 'dashboard_workplace';
+          }
         }
         emit('clickMenuItem' as any, key);
       }
@@ -165,3 +171,59 @@
     },
   });
 </script>
+<style lang="less">
+  .n-menu {
+    font-size: 16px;
+    color: #dcdcdc;
+    .n-menu-item {
+      margin: 0;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+  .n-submenu {
+    font-size: 15px;
+    .n-submenu-children {
+      font-size: 14px;
+      .n-menu-item-content--selected::before {
+        background: #2a394f !important;
+      }
+      // .n-menu-item-content:hover {
+      //   background: #2a394f;
+      // }
+      .n-menu-item-content--selected:hover {
+        background: #2a394f !important;
+      }
+    }
+  }
+  .n-menu.n-menu--horizontal {
+    padding: 0;
+    .n-menu-item-content {
+      border-right: 1px solid #28364a;
+      border-left: 1px solid #43546d;
+      width: 180px;
+      text-align: center;
+      border-bottom: 1px solid #43546d;
+    }
+    .n-menu-item-content--selected::before {
+      background: #2a394f;
+    }
+    .n-menu-item-content:hover {
+      background: #2a394f;
+      border-bottom: 3px solid #15a4fa !important;
+      .n-menu-item-content__icon {
+        color: #15a4fa !important;
+      }
+    }
+    .n-menu-item-content--child-active {
+      background: #2a394f;
+    }
+    .n-menu-item-content--selected {
+      background: #2a394f;
+      border-bottom: 3px solid #15a4fa !important;
+      .n-menu-item-content__icon {
+        color: #15a4fa !important;
+      }
+    }
+  }
+</style>

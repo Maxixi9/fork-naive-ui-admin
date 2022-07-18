@@ -296,7 +296,7 @@
 
       function togNavMode(mode) {
         settingStore.navMode = mode;
-        settingStore.menuSetting.mixMenu = false;
+        settingStore.menuSetting.mixMenu = true;
       }
 
       return {

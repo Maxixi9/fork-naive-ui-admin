@@ -5,9 +5,9 @@
       class="layout-header-left"
       v-if="navMode === 'horizontal' || (navMode === 'horizontal-mix' && mixMenu)"
     >
-      <div class="logo" v-if="navMode === 'horizontal'">
-        <img src="~@/assets/images/logo.png" alt="" />
-        <h2 v-show="!collapsed" class="title">NaiveUiAdmin</h2>
+      <div class="logo" v-if="navMode === 'horizontal-mix' && rootMenu">
+        <!-- <img src="~@/assets/images/logo.png" alt="" /> -->
+        <h2 v-show="!collapsed" class="title">4K路内智能相机</h2>
       </div>
       <AsideMenu
         v-model:collapsed="collapsed"
@@ -69,7 +69,7 @@
       </n-breadcrumb>
     </div>
     <div class="layout-header-right">
-      <div
+      <!-- <div
         class="layout-header-trigger layout-header-trigger-min"
         v-for="item in iconList"
         :key="item.icon.name"
@@ -82,9 +82,9 @@
           </template>
           <span>{{ item.tips }}</span>
         </n-tooltip>
-      </div>
+      </div> -->
       <!--切换全屏-->
-      <div class="layout-header-trigger layout-header-trigger-min">
+      <div v-if="false" class="layout-header-trigger layout-header-trigger-min">
         <n-tooltip placement="bottom">
           <template #trigger>
             <n-icon size="18">
@@ -108,7 +108,11 @@
         </n-dropdown>
       </div>
       <!--设置-->
-      <div class="layout-header-trigger layout-header-trigger-min" @click="openSetting">
+      <div
+        v-if="false"
+        class="layout-header-trigger layout-header-trigger-min"
+        @click="openSetting"
+      >
         <n-tooltip placement="bottom-end">
           <template #trigger>
             <n-icon size="18" style="font-weight: bold">
@@ -144,6 +148,9 @@
         type: Boolean,
       },
       inverted: {
+        type: Boolean,
+      },
+      rootMenu: {
         type: Boolean,
       },
     },
@@ -360,20 +367,30 @@
       .logo {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
         height: 64px;
         line-height: 64px;
         overflow: hidden;
         white-space: nowrap;
-        padding-left: 10px;
+        padding-left: 20px;
+        border-right: 1px solid #28364a;
+        border-bottom: 1px solid #43546d;
+        background: #364760;
+        font-size: 16px;
+        width: 220px;
 
         img {
           width: auto;
           height: 32px;
           margin-right: 10px;
+          display: block;
         }
 
         .title {
+          font-size: 16px;
+          color: #fff;
+          margin-top: -4px;
+          font-weight: bold;
           margin-bottom: 0;
         }
       }
